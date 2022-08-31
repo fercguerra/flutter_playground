@@ -7,9 +7,8 @@ void main(List<String> args) {
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      //ComponentElement
-      child: Container(
+    return MaterialApp(
+      home: Container(
         //RenderObjectElement
         color: Colors.red,
         width: 200,
