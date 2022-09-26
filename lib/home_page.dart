@@ -20,16 +20,26 @@ class _HomePageState extends State<HomePage> {
         title: Text('Masterclass 5'),
       ),
       body: Center(
-        child: AnimatedContainer(
-          duration: const Duration(seconds: 4),
-          decoration: BoxDecoration(
-            color: state.color,
-            borderRadius: BorderRadius.circular(state.radius),
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: AnimatedContainer(
+            duration: const Duration(seconds: 4),
+            decoration: BoxDecoration(
+              color: state.color,
+              borderRadius: BorderRadius.circular(state.radius),
+            ),
+            height: state.squareSize,
+            width: state.squareSize,
           ),
-          height: state.squareSize,
-          width: state.squareSize,
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        setState(() {
+          state = state.type == GeoState.circle
+              ? GeoState.square()
+              : GeoState.circle();
+        });
+      }),
     );
   }
 }
