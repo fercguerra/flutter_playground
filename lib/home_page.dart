@@ -17,13 +17,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Masterclass 5'),
+        title: const Text('Masterclass 5'),
       ),
       body: Center(
-        child: Align(
+        child: AnimatedAlign(
           alignment: Alignment.bottomCenter,
+          duration: const Duration(seconds: 2),
+          curve: Curves.bounceOut,
           child: AnimatedContainer(
-            duration: const Duration(seconds: 4),
+            duration: const Duration(seconds: 2),
             decoration: BoxDecoration(
               color: state.color,
               borderRadius: BorderRadius.circular(state.radius),
