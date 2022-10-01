@@ -9,13 +9,38 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int counter = 0;
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController controller;
+  late final Animation<Color> colorAnimation;
+
+  late final Animation<double> sizeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+
+    //animation
+    colorAnimation = Tween(
+      begin: Colors.green.withOpacity(0.4),
+      end: Colors.green,
+    ).animate(controller);
+
+    sizeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 300.0,
+    ).animate(controller);
+
+    controller.addListener(() {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    const progressWidth = 300.0;
-    const progress = 0.5;
-    final progressText = (progress * 100).floor().toString();
+    final progressText = (controller.value * 100).floor().toString();
 
     return Scaffold(
       appBar: AppBar(
@@ -23,18 +48,17 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: Container(
-            width: progressWidth,
+            width: 300,
             height: 80,
             color: Colors.grey[300],
             child: Align(
               alignment: Alignment.centerLeft,
               child: Stack(
                 children: [
-                  AnimatedContainer(
-                    curve: Curves.easeInOut,
-                    width: progressWidth * progress,
-                    color: Colors.green,
-                    duration: const Duration(seconds: 1),
+                  Container(
+                    height: 80,
+                    width: sizeAnimation.value,
+                    color: colorAnimation.value,
                     alignment: Alignment.center,
                   ),
                   Align(
@@ -49,6 +73,16 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             )),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (controller.isCompleted) {
+           controller.reverse();
+          } else {
+            controller.forward();
+          }
+       
+        },
       ),
     );
   }
