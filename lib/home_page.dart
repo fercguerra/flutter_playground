@@ -9,72 +9,47 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-var state = GeoState.square();
-
 class _HomePageState extends State<HomePage> {
   int counter = 0;
   @override
   Widget build(BuildContext context) {
+    const progressWidth = 300.0;
+    const progress = 0.5;
+    final progressText = (progress * 100).floor().toString();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Masterclass 5'),
       ),
       body: Center(
-        child: AnimatedAlign(
-          alignment: Alignment.bottomCenter,
-          duration: const Duration(seconds: 2),
-          curve: Curves.bounceOut,
-          child: AnimatedContainer(
-            duration: const Duration(seconds: 2),
-            decoration: BoxDecoration(
-              color: state.color,
-              borderRadius: BorderRadius.circular(state.radius),
-            ),
-            height: state.squareSize,
-            width: state.squareSize,
-          ),
-        ),
+        child: Container(
+            width: progressWidth,
+            height: 80,
+            color: Colors.grey[300],
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Stack(
+                children: [
+                  AnimatedContainer(
+                    curve: Curves.easeInOut,
+                    width: progressWidth * progress,
+                    color: Colors.green,
+                    duration: const Duration(seconds: 1),
+                    alignment: Alignment.center,
+                  ),
+                  Align(
+                    child: Text(
+                      progressText,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        setState(() {
-          state = state.type == GeoState.circle
-              ? GeoState.square()
-              : GeoState.circle();
-        });
-      }),
-    );
-  }
-}
-
-enum Geotype { square, cricle }
-
-class GeoState {
-  final double squareSize;
-  final Color color;
-  final double radius;
-  final Geotype type;
-
-  GeoState({
-    required this.squareSize,
-    required this.color,
-    required this.radius,
-    required this.type,
-  });
-
-  factory GeoState.square() {
-    return GeoState(
-      squareSize: 200,
-      color: Colors.red,
-      radius: 200,
-      type: Geotype.square,
-    );
-  }
-  factory GeoState.circle() {
-    return GeoState(
-      squareSize: 200,
-      color: Colors.blue,
-      radius: 200,
-      type: Geotype.cricle,
     );
   }
 }
