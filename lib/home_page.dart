@@ -24,12 +24,11 @@ class _HomePageState extends State<HomePage>
 
     //animation
     colorAnimation = ColorTween(
-      begin: Colors.green.withOpacity(0.4),
-      end: Colors.green,
+      begin: Colors.purple.withOpacity(0.4),
+      end: Colors.purple,
     ).animate(CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOut,
-        reverseCurve: Curves.easeIn));
+        curve: const Interval(0.0, 0.5, curve: Curves.easeOut)));
 
     sizeAnimation = Tween<double>(
       begin: 0.0,
@@ -43,9 +42,9 @@ class _HomePageState extends State<HomePage>
       begin: 20,
       end: 30,
     ).animate(CurvedAnimation(
-        parent: controller,
-        curve: Curves.bounceOut,
-        reverseCurve: Curves.bounceOut));
+      parent: controller,
+      curve: Curves.ease,
+    ));
 
     controller.addListener(() {
       setState(() {});
