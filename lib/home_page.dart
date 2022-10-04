@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late final AnimationController controller;
-  late final Animation<Color> colorAnimation;
+  late final Animation<Color?> colorAnimation;
 
   late final Animation<double> sizeAnimation;
 
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage>
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
 
     //animation
-    colorAnimation = Tween(
+    colorAnimation = ColorTween(
       begin: Colors.green.withOpacity(0.4),
       end: Colors.green,
     ).animate(controller);
@@ -77,11 +77,10 @@ class _HomePageState extends State<HomePage>
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (controller.isCompleted) {
-           controller.reverse();
+            controller.reverse();
           } else {
             controller.forward();
           }
-       
         },
       ),
     );
