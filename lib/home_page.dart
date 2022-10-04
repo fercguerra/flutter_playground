@@ -13,8 +13,8 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late final AnimationController controller;
   late final Animation<Color?> colorAnimation;
-
   late final Animation<double> sizeAnimation;
+  late final Animation<double> sizeTextAnimation;
 
   @override
   void initState() {
@@ -34,6 +34,14 @@ class _HomePageState extends State<HomePage>
     sizeAnimation = Tween<double>(
       begin: 0.0,
       end: 300.0,
+    ).animate(CurvedAnimation(
+        parent: controller,
+        curve: Curves.bounceOut,
+        reverseCurve: Curves.bounceOut));
+
+    sizeTextAnimation = Tween<double>(
+      begin: 20,
+      end: 30,
     ).animate(CurvedAnimation(
         parent: controller,
         curve: Curves.bounceOut,
@@ -71,7 +79,7 @@ class _HomePageState extends State<HomePage>
                     child: Text(
                       progressText,
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: sizeTextAnimation.value,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
