@@ -12,42 +12,35 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: SingleChildScrollView (
-          child: Column(
-            children: [
-              Container(
-                color: Colors.red,
-                height: 150,
-                width: 150,
-              ),
-              Container(
-                color: Colors.green,
-                height: 150,
-                width: 150,
-              ),
-              Container(
-                color: Colors.blue,
-                height: 150,
-                width: 150,
-              ),
-              Container(
-                color: Colors.red,
-                height: 150,
-                width: 150,
-              ),
-              Container(
-                color: Colors.black,
-                height: 150,
-                width: 150,
-              ),
-              Container(
-                color: Colors.amber,
-                height: 150,
-                width: 150,
-              ),
-            ],
+      appBar: AppBar(),
+      body: ListView(
+        children: [
+          Container(
+            color: Colors.red,
+            height: 150,
           ),
-        ));
+          Container(
+            color: Colors.green,
+            height: 150,
+          ),
+          Container(
+            color: Colors.blue,
+            height: 150,
+          ),
+          Container(
+            color: Colors.red,
+            height: 150,
+          ),
+          Container(
+            color: Colors.black,
+            height: 150,
+          ),
+          Container(
+            color: Colors.amber,
+            height: 150,
+          ),
+        ],
+      ),
+    );
   }
 }
