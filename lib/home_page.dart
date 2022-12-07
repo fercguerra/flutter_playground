@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,6 +13,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
+        //coluna com scroll
         children: [
           Container(
             color: Colors.red,
@@ -25,10 +25,6 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             color: Colors.blue,
-            height: 150,
-          ),
-          Container(
-            color: Colors.red,
             height: 150,
           ),
           Container(
